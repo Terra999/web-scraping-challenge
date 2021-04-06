@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+
+    <!-- Phone Listings -->
+    <div class="row">
+        <div class="col-md-12">
+          <h2><b>Latest Mars News</b></h2>
+          <h4><b>NASA's Mars Rover Drivers Need Your Help</b></h4>
+          <h5>Using an online tool to label Martian terrain types, you can train an artificial intelligence algorithm that could improve the way engineers guide the Curiosity rover.</h5>
+        </div>
+    
+        <div class="col-sm-4 col-md-8">
+            <h2><b>Featured Mars Image</b></h2>
+            <div>
+                <img src="{{ featured_image_url }}" class="image-fluid alt="Featured image">
+            </div>
+        </div>
+        <div class="col-sm-2 col-md-4">
+            <a target="_blank" href="mars_data.html"></a>
+        </div>
+
+
+  </div>
+</body>
+
+</html>
