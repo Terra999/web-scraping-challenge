@@ -17,24 +17,62 @@
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
 
-    <!-- Phone Listings -->
+    
     <div class="row">
         <div class="col-md-12">
           <h2><b>Latest Mars News</b></h2>
-          <h4><b>NASA's Mars Rover Drivers Need Your Help</b></h4>
-          <h5>Using an online tool to label Martian terrain types, you can train an artificial intelligence algorithm that could improve the way engineers guide the Curiosity rover.</h5>
+          <h4><b>{{ mars.title }}</b></h4>
+          <h5>{{ mars.paragraph }}</h5>
         </div>
     
         <div class="col-sm-4 col-md-8">
             <h2><b>Featured Mars Image</b></h2>
             <div>
-                <img src="{{ featured_image_url }}" class="image-fluid alt="Featured image">
+                <img src="{{ mars.feature_image_url }}" class="image-fluid alt="Featured image">
             </div>
         </div>
         <div class="col-sm-2 col-md-4">
-            <a target="_blank" href="mars_data.html"></a>
+            <a target="_blank" href="mars_data.html|safe"></a>
         </div>
-
+        <div class="col-md-12">
+          <h2 class="text-center"><b>Mars Hemispheres</b></h2>
+          <hr>
+          <div class="container">
+            <!-- <h3 class="text-center">Thumbnails</h3> -->
+              <div class="row">
+                  <div class="col-md-3">
+                    <div class="thumbnail">
+                      <img src="mars." alt="..." class="img-thumbnail" target="_blank" alt="Cerberus Hemisphere Enhanced">
+                    </div>
+                    <div class="caption">
+                        <h3><b>Cerberus<br>Hemisphere<br>Enhanced</b></h3>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                      <div class="thumbnail">
+                        <img src="mars." alt="..." class="img-thumbnail" target="_blank" alt ="Schiaparelli Hemisphere Enhanced">
+                      </div>
+                    <div class="caption">
+                        <h3><b>Schiaparelli<br>Hemisphere<br>Enhanced</b></h3>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                      <div class="thumbnail">
+                        <img src="mars." alt="..." class="img-thumbnail" target="_blank" alt="Syrtis Major Hemisphere Enhanced">
+                      </div>
+                      <div class="caption">
+                          <h3><b>Syrtis Major<br>Hemisphere<br>Enhanced</b></h3>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="thumbnail">
+                        <img src="mars." alt="..." class="img-thumbnail" target="_blank" alt="Valles Mariners Hemisphere Enhanced">
+                      </div>
+                      <div class="caption">
+                          <h3><b>Valles Mariners<br>Hemisphere<br>Enhanced</b></h3>
+                      </div>
+                  </div>
+          </div>
 
   </div>
 </body>

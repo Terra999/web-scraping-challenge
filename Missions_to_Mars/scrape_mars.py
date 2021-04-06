@@ -1,5 +1,6 @@
+from bs4 import BeautifulSoup as bs
+import requests
 from splinter import Browser
-from bs4 import BeautifulSoup
 import pandas as pd
 import time
 from webdriver_manager.chrome import ChromeDriverManager
@@ -34,7 +35,7 @@ def scrape():
         'paragraph': paragraph,
     }
 
-    print(post)
+    # print(post)
 
     # Insert dictionary into MongoDB as a document
     collection.insert_one(post)
@@ -156,12 +157,12 @@ def scrape():
         # Repeat
         browser.back()
     
-         time.sleep(0.5)
+        time.sleep(0.5)
     
 
         # print article data
-        print('-----------------')
-        print(hemi_image_urls)
+        # print('-----------------')
+        # print(hemi_image_urls)
    
     
         # Insert dictionary into MongoDB as a document
@@ -169,11 +170,13 @@ def scrape():
 
 
 #     # print article data
-    print('-----------------')
-    print(hemi_image_urls)
+    # print('-----------------')
+    # print(hemi_image_urls)
    
     
     # Insert dictionary into MongoDB as a document
     collection.insert_one(hemi_dict)
 
     return results
+
+print("Data Uploaded!")
