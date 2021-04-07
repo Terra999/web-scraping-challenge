@@ -10,50 +10,32 @@ from webdriver_manager.chrome import ChromeDriverManager
 def scrape():
     # browser = init_browser()
     executable_path = {'executable_path': ChromeDriverManager().install()}
-    browser = Browser('chrome', **executable_path, headless=False)
-
-    # Define database and collection
-    # db = client.mars_db
-    # collection = db.articles
+    browser = Browser('chrome', **executable_path, headless=True)
 
     # URL of page to be scraped
     url = 'https://redplanetscience.com/'
     browser.visit(url)
     html = browser.html
-    soup = BeautifulSoup(html, "html.parser")
+    soup = bs(html, "html.parser")
 
     # Retrieve the parent divs for all paragraphs
     results = soup.find('div', class_='list_text')
     # Scrape the article for titles
     title = results.find('div', class_='content_title').text   
     # Scrape the article paragraph
-    paragraph = results.find('div', class_='article_teaser_body').text
-    
-    # Dictionary to be inserted into MongoDB
-    
-    # print(post)
-
-    # Insert dictionary into MongoDB as a document
-    # collection.insert_one(post)
-
-    # Quit the browser
-    browser.quit()
+    paragraph = results.find('div', class_='article_teaser_body').text  
 
 # JPL Mars Space Images - Featured Image
-
-    # browser = init_browser()
-    executable_path = {'executable_path': ChromeDriverManager().install()}
-    browser = Browser('chrome', **executable_path, headless=False)
 
     # URL of the page to be scraped
     url = 'https://spaceimages-mars.com/'
     browser.visit(url)
 
     # Create BeautifulSoup object; parse with 'html.parser'
-    soup = BeautifulSoup(browser.html, 'html.parser')
+    soup = bs(browser.html, 'html.parser')
 
     # Declare an empty list for image url
-    featured_image_url = []
+    # featured_image_url = []
 
     # Retrieve the parent div for the image
     results = soup.find_all('div', class_='floating_text_area')
@@ -67,9 +49,9 @@ def scrape():
         image_url = ('https://spaceimages-mars.com/' + href)
         print('-----------')
         print(image_url)
-        featured_image_url.append(image_url)
+        # featured_image_url.append(image_url)
     
-        time.sleep(0.5)
+        # time.sleep(0.5)
 
     # Click the 'FULL IMAGE' button
     try:
@@ -79,14 +61,10 @@ def scrape():
         print("Scraping Complete")
     
     # Dictionary to be inserted into MongoDB
-    feature_image_url = {
-        'image_url': image_url,
-    }
-    # Insert dictionary into MongoDB as a document
-    # collection.insert_one(feature_image_url)
+    # feature_image_url = {
+    #     'image_url': image_url,
+    # }
 
-    # Quit the browser
-    browser.quit()
 
 # Mars Facts
 
@@ -108,16 +86,12 @@ def scrape():
 
 # Mars Hemispheres
 
-    # browser = init_browser()
-    executable_path = {'executable_path': ChromeDriverManager().install()}
-    browser = Browser('chrome', **executable_path, headless=False)
-
     #URL of the page to be scraped
     url = 'https://marshemispheres.com/'
     browser.visit(url)
 
     # Create BeautifulSoup object; parse with 'html.parser'
-    soup = BeautifulSoup(browser.html, 'html.parser')
+    soup = bs(browser.html, 'html.parser')
 
     # Declare an empty list for titles and img_urls
     hemi_image_urls = []
@@ -154,31 +128,18 @@ def scrape():
         # Repeat
         browser.back()
     
-        time.sleep(0.5)
+        # time.sleep(0.5)
+
+    post = {
+        'title': title,
+        'paragraph': paragraph,
+        'hemispheres': hemi_image_urls,
+        'mars_facts': mars_table,
+        'image': image_url
+        }
     
-
-        # print article data
-        # print('-----------------')
-        # print(hemi_image_urls)
-   
-    
-        # Insert dictionary into MongoDB as a document
-        # collection.insert_one(hemi_dict)
-
-
-#     # print article data
-    # print('-----------------')
-    # print(hemi_image_urls)
-
-    post = [{'title': title},
-        {'paragraph': paragraph},
-        {'hemispheres': hemi_dict},
-        {'mars_facts': mars_table},
-        {'image': featured_image_url}]
-    
-    # Insert dictionary into MongoDB as a document
-    # collection.insert_one(hemi_dict)
-
+    browser.quit()
     return post
+
 
 print("Data Uploaded!")
