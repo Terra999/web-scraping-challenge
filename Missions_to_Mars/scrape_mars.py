@@ -13,8 +13,8 @@ def scrape():
     browser = Browser('chrome', **executable_path, headless=False)
 
     # Define database and collection
-    db = client.mars_db
-    collection = db.articles
+    # db = client.mars_db
+    # collection = db.articles
 
     # URL of page to be scraped
     url = 'https://redplanetscience.com/'
@@ -30,15 +30,11 @@ def scrape():
     paragraph = results.find('div', class_='article_teaser_body').text
     
     # Dictionary to be inserted into MongoDB
-    post = {
-        'title': title,
-        'paragraph': paragraph,
-    }
-
+    
     # print(post)
 
     # Insert dictionary into MongoDB as a document
-    collection.insert_one(post)
+    # collection.insert_one(post)
 
     # Quit the browser
     browser.quit()
@@ -87,7 +83,7 @@ def scrape():
         'image_url': image_url,
     }
     # Insert dictionary into MongoDB as a document
-    collection.insert_one(feature_image_url)
+    # collection.insert_one(feature_image_url)
 
     # Quit the browser
     browser.quit()
@@ -107,7 +103,8 @@ def scrape():
     mars_df.columns = ['Feature', 'Measurement']
 
     # Convert to an html file
-    mars_df.to_html('mars_data.html', classes='table table-striped', index = False)
+    mars_table = mars_df.to_html(classes='table table-striped', index = False)
+
 
 # Mars Hemispheres
 
@@ -166,17 +163,22 @@ def scrape():
    
     
         # Insert dictionary into MongoDB as a document
-        collection.insert_one(hemi_dict)
+        # collection.insert_one(hemi_dict)
 
 
 #     # print article data
     # print('-----------------')
     # print(hemi_image_urls)
-   
+
+    post = [{'title': title},
+        {'paragraph': paragraph},
+        {'hemispheres': hemi_dict},
+        {'mars_facts': mars_table},
+        {'image': featured_image_url}]
     
     # Insert dictionary into MongoDB as a document
-    collection.insert_one(hemi_dict)
+    # collection.insert_one(hemi_dict)
 
-    return results
+    return post
 
 print("Data Uploaded!")
