@@ -35,37 +35,11 @@ def scrape():
     soup = bs(browser.html, 'html.parser')
 
     # Declare an empty list for image url
-    featured_image_url = []
+    # featured_image_url = []
 
     # Retrieve the parent div for the image
     results = soup.find('img', class_='headerimage').get('src')
-    featured_image_url.append(results)
-
-
-    # # Iterate through the floating text area
-    # for result in results:
-    #     # Use Beautiful Soup's find() method to navigate and retrieve attributes
-    #     a = result.find('a')
-    #     link = result.find('a')
-    #     href = link['href']
-    #     image_url = ('https://spaceimages-mars.com/' + href)
-    #     print('-----------')
-    #     print(image_url)
-    #     # featured_image_url.append(image_url)
-    
-    #     # time.sleep(0.5)
-
-    # # Click the 'FULL IMAGE' button
-    # try:
-    #  browser.links.find_by_partial_text('FULL IMAGE').click()
-          
-    # except:
-    #     print("Scraping Complete")
-    
-    # Dictionary to be inserted into MongoDB
-    # feature_image_url = {
-    #     'image_url': image_url,
-    # }
+    featured_image_url = f'{url}{results}'
 
 
 # Mars Facts
@@ -135,9 +109,9 @@ def scrape():
     post = {
         'title': title,
         'paragraph': paragraph,
-        'hemispheres': hemi_image_urls,
+        'image': featured_image_url,
         'mars_facts': mars_table,
-        'image': results
+        'hemispheres': hemi_image_urls    
         }
     
     browser.quit()
