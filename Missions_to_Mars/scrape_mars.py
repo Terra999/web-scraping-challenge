@@ -34,10 +34,7 @@ def scrape():
     # Create BeautifulSoup object; parse with 'html.parser'
     soup = bs(browser.html, 'html.parser')
 
-    # Declare an empty list for image url
-    # featured_image_url = []
-
-    # Retrieve the parent div for the image
+    # Retrieve featured image
     results = soup.find('img', class_='headerimage').get('src')
     featured_image_url = f'{url}{results}'
 
